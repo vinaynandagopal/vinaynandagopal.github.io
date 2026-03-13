@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay N — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#111111;
+  --bg2:#181818;
+  --text:#f0efe9;
+  --muted:#888880;
+  --border:rgba(255,255,255,0.08);
+  --accent:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;}
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;background:rgba(17,17,17,0.85);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);}
+.nav-name{font-size:15px;font-weight:700;letter-spacing:-0.01em;}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-size:13px;color:var(--muted);transition:color 0.15s;font-weight:500;}
+.nav-links a:hover{color:var(--text);}
+.nav-resume{border:1px solid rgba(255,255,255,0.25);padding:6px 16px;border-radius:6px;font-size:13px;font-weight:500;transition:background 0.15s,border-color 0.15s;}
+.nav-resume:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.4);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 3rem;max-width:900px;margin:0 auto;}
+.hero-inner{padding-top:5rem;}
+.hero-greeting{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:400;color:var(--muted);margin-bottom:0.5rem;}
+.hero-name{font-size:clamp(3rem,8vw,5.5rem);font-weight:700;line-height:1.05;letter-spacing:-0.03em;margin-bottom:0.4rem;}
+.hero-role{font-size:clamp(1.8rem,5vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem;min-height:1.2em;}
+.cursor{display:inline-block;width:3px;height:0.85em;background:var(--text);margin-left:2px;vertical-align:middle;animation:blink 0.9s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-bio{font-size:16px;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:2rem;font-weight:400;}
+.hero-bio a{color:var(--text);text-decoration:underline;text-underline-offset:3px;}
+.hero-links{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;transition:background 0.15s,border-color 0.15s;}
+.icon-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.3);}
+.icon-btn svg{width:18px;height:18px;}
+.resume-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid rgba(255,255,255,0.25);border-radius:8px;font-size:13px;font-weight:600;letter-spacing:0.02em;transition:background 0.15s,border-color 0.15s;}
+.resume-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.4);}
+
+/* SECTIONS */
+.container{max-width:900px;margin:0 auto;padding:0 3rem;}
+section{padding:5rem 0;border-top:0.5px solid var(--border);}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem;}
+
+/* EXPERIENCE — stacked cards */
+.exp-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.exp-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s,background 0.2s;}
+.exp-card:hover{border-color:rgba(255,255,255,0.2);background:#1e1e1e;}
+.exp-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.exp-role{font-size:15px;font-weight:600;}
+.exp-company{font-size:13px;color:var(--muted);margin-top:3px;}
+.exp-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;padding-top:3px;}
+.exp-bullets{margin:0;}
+.exp-bullets li{font-size:13px;color:var(--muted);margin-bottom:5px;padding-left:1.2rem;position:relative;list-style:none;}
+.exp-bullets li:last-child{margin-bottom:0;}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:rgba(255,255,255,0.25);font-size:12px;top:2px;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.project-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s,background 0.2s;}
+.project-card:hover{border-color:rgba(255,255,255,0.2);background:#1e1e1e;}
+.project-title{font-size:15px;font-weight:600;margin-bottom:8px;}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.tag{font-family:'DM Mono',monospace;font-size:11px;padding:3px 9px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:4px;color:var(--muted);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
+.skill-group-title{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text);}
+.skill-items{display:flex;flex-wrap:wrap;gap:6px;}
+
+/* CERTS */
+.certs{display:flex;flex-direction:column;gap:10px;}
+.cert-item{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px;}
+.cert-name{font-size:13px;font-weight:500;}
+.cert-issuer{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* FOOTER */
+footer{border-top:0.5px solid var(--border);padding:2.5rem 3rem;}
+.footer-note{font-size:13px;color:var(--muted);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:13px;color:var(--muted);transition:color 0.15s;}
+.footer-links a:hover{color:var(--text);}
+
+@media(max-width:600px){
+  nav{padding:1rem 1.25rem;}
+  .nav-links{gap:1rem;}
+  .hero{padding:0 1.25rem;}
+  .container{padding:0 1.25rem;}
+  footer{padding:2rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Vinay N</div>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a class="nav-resume" href="https://drive.google.com/file/d/1RMALvbM1VwqmsmxVsYokSidBwCTWftxN/view?usp=sharing" target="_blank">Resume</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-greeting">Hi, my name is</div>
+    <div class="hero-name">Vinay N.</div>
+    <div class="hero-role" id="typed-role">I am a <span id="typed-text"></span><span class="cursor"></span></div>
+    <p class="hero-bio">
+      I'm a 3rd year B.Tech student at <a href="https://www.srmist.edu.in" target="_blank">SRM KTR, Chennai</a>, specialising in cybersecurity.
+      I build software, break systems (legally).
+      <br><br>Looking for SWE or cybersecurity internships.
+    </p>
+    <div class="hero-links">
+      <a class="icon-btn" href="https://github.com/vinaynandagopal" target="_blank" title="GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.34c-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.88-1.17-.88-1.17-.72-.49.05-.48.05-.48.8.06 1.22.82 1.22.82.71 1.22 1.86.87 2.31.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.66 7.66 0 0 1 8 4.07c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://linkedin.com/in/vinayn10" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 1 0 2.5 4 1.5 1.5 0 0 0 2.5 1zM1 5.5h3v9H1zM6 5.5h2.9v1.3h.04C9.36 5.9 10.4 5.3 11.9 5.3c3 0 3.6 2 3.6 4.6v5.6h-3v-5c0-1.2 0-2.7-1.6-2.7s-1.9 1.3-1.9 2.6v5.1H6z"/></svg>
+      </a>
+      <a class="icon-btn" href="mailto:vinaynanda06@gmail.com" title="Email">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M1 4l7 5 7-5"/></svg>
+      </a>
+      <a class="icon-btn" href="https://tryhackme.com/p/vinayy" target="_blank" title="TryHackMe">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+      <path d="M10.705 0C7.54 0 4.902 2.235 4.325 5.233a4.322 4.322 0 0 0-.8-.075 4.342 4.342 0 0 0 0 8.684h6.847a.87.87 0 0 0 0-1.74H3.525a2.602 2.602 0 0 1 0-5.203c.3 0 .593.053.868.15A5.591 5.591 0 0 0 10.25 11.6a.87.87 0 0 0 0-1.74 3.856 3.856 0 0 1-3.85-3.853 3.856 3.856 0 0 1 3.85-3.852 3.856 3.856 0 0 1 3.852 3.852.87.87 0 0 0 1.74 0A5.598 5.598 0 0 0 10.705 0zm4.95 8.67a.87.87 0 0 0-.87.87v.58a.87.87 0 0 0 1.74 0v-.58a.87.87 0 0 0-.87-.87zm2.9 1.16a.87.87 0 0 0-.87.87v4.06l-1.207-1.207a.87.87 0 0 0-1.23 1.23l2.61 2.61a.87.87 0 0 0 1.23 0l2.61-2.61a.87.87 0 0 0-1.23-1.23l-1.043 1.043v-3.896a.87.87 0 0 0-.87-.87z"/>
+    </svg>
+    </a>
+      <a class="resume-btn" href="https://drive.google.com/file/d/1RMALvbM1VwqmsmxVsYokSidBwCTWftxN/view?usp=sharing" target="_blank">Resume ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div><div class="exp-role">Technical Intern</div><div class="exp-company">LightLives</div></div>
+          <div class="exp-date">Dec 2025 – Feb 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Deployed an Open edX–based LMS using Docker; evaluated feasibility and recommended discontinuation due to resource overhead</li>
+          <li>Managed user enrollment, roles, and cohort access for controlled learner groups</li>
+          <li>Configured Tailscale VPN for secure internal networking across distributed infrastructure</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div><div class="exp-role">CRM Operations Intern</div><div class="exp-company">TalentEase</div></div>
+          <div class="exp-date">Jun – Jul 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Configured Odoo CRM to manage multi-team pipelines across 4 departments with role-based access</li>
+          <li>Designed standardised pipeline stages and tagging strategies to eliminate data overlap</li>
+          <li>Led cross-functional onboarding, communicating CRM workflows to non-technical stakeholders</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-card-header">
+          <div><div class="exp-role">Cybersecurity Track — Launchpad Program</div><div class="exp-company">PwC</div></div>
+          <div class="exp-date">Feb – Aug 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Among 50 students selected for PwC's competitive Launchpad programme</li>
+          <li>Covers cybersecurity, risk management, and regulatory principles alongside technical skills</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-items">
+          <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C/C++</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Security tools</div>
+        <div class="skill-items">
+          <span class="tag">Nessus</span><span class="tag">Metasploit</span><span class="tag">Nmap</span><span class="tag">Burp Suite</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Frameworks & other</div>
+        <div class="skill-items">
+          <span class="tag">Spring Boot</span><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">SQLite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-title">Online Dining Management System</div>
+        <div class="project-desc">Full-stack restaurant management web app with menu browsing, order management, and admin dashboard.</div>
+        <div class="project-tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-title">AI Self-Driving Car Simulation</div>
+        <div class="project-desc">Browser-based simulation for testing self-driving car logic with a neural network built from scratch in vanilla JS.</div>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span><span class="tag">Canvas API</span><span class="tag">Neural Net</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Certificates</div>
+    <div class="certs">
+      <div class="cert-item">
+        <div><div class="cert-name">Google Cybersecurity Certificate</div><div class="cert-issuer">Google</div></div>
+      </div>
+      <div class="cert-item">
+        <div><div class="cert-name">Cryptography and Network Security</div><div class="cert-issuer">Swayam – NPTEL</div></div>
+      </div>
+      <div class="cert-item">
+        <div><div class="cert-name">Introduction to Cybersecurity</div><div class="cert-issuer">Cisco / Online</div></div>
+      </div>
+      <div class="cert-item">
+        <div><div class="cert-name">Networking Basics</div><div class="cert-issuer">Cisco / Online</div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div style="width:100%;text-align:center;">
+    <div style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;">Vinay N · SRM KTR Chennai · 2023–27</div>
+    <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1rem;">
+      <a href="mailto:vinaynanda06@gmail.com" style="font-size:14px;color:var(--text);">vinaynanda06@gmail.com</a>
+      <span style="color:var(--border);">|</span>
+      <a href="tel:+918919765697" style="font-size:14px;color:var(--text);">+91 89197 65697</a>
+      <span style="color:var(--border);">|</span>
+      <a href="https://linkedin.com/in/vinayn10" target="_blank" style="font-size:14px;color:var(--text);">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const roles = ["Developer.", "Security Researcher.", "Programmer.", "Tech Enthusiast."];
+let roleIndex = 0, charIndex = 0, deleting = false;
+const el = document.getElementById("typed-text");
+function type() {
+  const current = roles[roleIndex];
+  if (!deleting) {
+    el.textContent = current.slice(0, charIndex + 1);
+    charIndex++;
+    if (charIndex === current.length) { setTimeout(() => { deleting = true; type(); }, 1800); return; }
+  } else {
+    el.textContent = current.slice(0, charIndex - 1);
+    charIndex--;
+    if (charIndex === 0) { deleting = false; roleIndex = (roleIndex + 1) % roles.length; }
+  }
+  setTimeout(type, deleting ? 60 : 90);
+}
+type();
+</script>
+</body>
+</html>
